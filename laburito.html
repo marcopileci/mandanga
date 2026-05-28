@@ -8,29 +8,7 @@
         .boton_destacado {background-color: #3E3FC9; }
                           
         .abecedario {color: red;}
-        
-        .container {  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  grid-template-rows: 1fr 2.8fr 0.1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Juegos Grilla Juegos Grilla Juegos Grilla"
-    "Juegos Grilla Juegos Grilla Juegos Grilla"
-    ". . .";
-}
-
-.Juegos Grilla {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "juego1 juego2 juego3"
-    "juego4 juego5 juego6"
-    "juego7 juego8 juego9";
-  grid-area: Juegos Grilla;
-}
+    
     </style>
 </head>
 <body>
@@ -56,7 +34,6 @@
 
 
     <center>
-<div class="container">
   <div class="Juegos Grilla">
     <button class="juego1">1</button>
     <button class="juego2">2</button>
@@ -70,8 +47,9 @@
     <button class="juego8">8</button>
     <button class="juego9">9</button>
   </div>
-</div></center>   
+</div></center><br>
 
+<center>
 <div class="abecedario">
         <button > 1 </button>   
         <button > 2 </button>   
@@ -79,7 +57,8 @@
         <button > 4 </button>   
         <button > ... </button>
 </div>
+</center>
 
-<div> @HomeroEnterprice 2026</div>
+<div style="text-align: right;"> @HomeroEnterprice 2026</div>
 </body>
 </html>
