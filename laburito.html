@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laburito</title>
+    <style>
+        .boton_destacado {background-color: #3E3FC9; }
+                          
+        .abecedario {color: red;}
+        
+        .container {  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-rows: 1fr 2.8fr 0.1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Juegos Grilla Juegos Grilla Juegos Grilla"
+    "Juegos Grilla Juegos Grilla Juegos Grilla"
+    ". . .";
+}
+
+.Juegos Grilla {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "juego1 juego2 juego3"
+    "juego4 juego5 juego6"
+    "juego7 juego8 juego9";
+  grid-area: Juegos Grilla;
+}
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: Arial, Helvetica, sans-serif"> Wiki Juegos </h1>
+    <center>
+    <button class="boton_destacado"> Nuevos jugos</button>
+    <button class="boton_destacado"> Mas jugados</button>
+    <button class="boton_destacado"> Mejor clasificados</button> </center> <br>
+
+
+    <center>
+    <div class="abecedario">
+        <button > a </button>   
+        <button > b </button>   
+        <button > c </button>   
+        <button > d </button>   
+        <button > e </button>   
+        <button > f </button>   
+        <button > g </button>   
+        <button > h </button>   
+    </div></center> <br>
+
+
+
+    <center>
+<div class="container">
+  <div class="Juegos Grilla">
+    <button class="juego1">1</button>
+    <button class="juego2">2</button>
+    <button class="juego3">3</button>
+    <br>
+    <button class="juego4">4</button>
+    <button class="juego5">5</button>
+    <button class="juego6">6</button>
+    <br>
+    <button class="juego7">7</button>
+    <button class="juego8">8</button>
+    <button class="juego9">9</button>
+  </div>
+</div></center>   
+
+<div class="abecedario">
+        <button > 1 </button>   
+        <button > 2 </button>   
+        <button > 3 </button>   
+        <button > 4 </button>   
+        <button > ... </button>
+</div>
+
+<div> @HomeroEnterprice 2026</div>
+</body>
+</html>
