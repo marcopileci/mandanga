@@ -27,6 +27,7 @@
         echo "<div>
             <h1>".$juego['nombre']."</h1>
             <h2>".$juego['categoria']."</h2>
+            <br>
             <p>".$juego['descripcion']."</p>
             <p>".$juego['resenia']."</p>
         </div>";
