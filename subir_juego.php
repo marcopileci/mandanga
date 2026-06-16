@@ -89,13 +89,6 @@
         echo "<option value='".$categoria['id']."'>".$categoria['nombre']."</option>";
         }
 ?>
-
-  <!--    <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-  -->
     </select>
       </div>
       <div class="form-group">
@@ -107,8 +100,53 @@
     <textarea maxlength="500" class="form-control" name="resenia" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
   <div class="form-group text-white">
-    <label>Subir Imagen</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <form action="actualizar_imagen.php" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="id" value="<?php echo $idJuego; ?>">
+
+    <div class="form-group text-white">
+        <label>Subir Imagen</label>
+        <input type="file" name="portada" class="form-control-file">
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Guardar
+    </button>
+</form>
+<?php
+
+if(isset($_FILES['portada']) && isset($_POST['id'])){
+
+    $idJuego = (int)$_POST['id'];
+
+    $nombreArchivo = $_FILES['portada']['name'];
+    $tmpArchivo = $_FILES['portada']['tmp_name'];
+
+    $rutaDestino = "img/" . $nombreArchivo;
+
+    if(move_uploaded_file($tmpArchivo, $rutaDestino)){
+
+        $sql = "UPDATE juegos SET portada = ? WHERE id = ?";
+
+        $stmt = mysqli_prepare($conexion, $sql);
+        mysqli_stmt_bind_param($stmt, "si", $rutaDestino, $idJuego);
+
+        if(mysqli_stmt_execute($stmt)){
+            echo "Imagen actualizada correctamente";
+        }else{
+            echo "Error al actualizar la base de datos";
+        }
+
+        mysqli_stmt_close($stmt);
+
+    }else{
+        echo "Error al subir el archivo";
+    }
+
+}else{
+    echo "Faltan datos";
+}
+?>
   </div>
   <button type="submit" class="btn btn-primary btn-lg center">Subir Juego</button>
   </div>

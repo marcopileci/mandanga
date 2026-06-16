@@ -15,14 +15,16 @@
             $catid = $_POST['catid'];
             $descripcion = $_POST['descripcion'];
             $resenia = $_POST['resenia'];
+            
 
             $consulta = "INSERT INTO juegos (nombre, catid, descripcion, resenia) VALUES ('".$nombre."', ".$catid.", '".$descripcion."', '".$resenia."')";
 
-            $resultado = $db->query($consulta);
-            if($resultado >0){
-                echo "Juegos agregado.";
-            } else {echo "Error";
-            }
+           $resultado = $db->query($consulta);
+          if($resultado >0){
+              echo "Juegos agregado.";
+         } else {echo "Error";
+       }
+  //      echo "<h1>". $consulta ."</h1>";
          ?>
 
          <?php $db->close();
