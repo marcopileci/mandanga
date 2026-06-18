@@ -74,7 +74,7 @@
     </header>
 
 <!-- FORM-->
-<form action="hacer_subir_juego.php" method="post">
+<form action="hacer_subir_juego.php" method="post" enctype="multipart/form-data">>
   <div class="form-group text-white">
     <label class="text-white" maxlength="160">Nombre del juego</label>
     <input type="text" class="form-control" name="nombre" id="formGroupExampleInput" placeholder="">
