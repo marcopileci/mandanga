@@ -11,30 +11,28 @@
     <html>  
         <body>
          <?php
-        $portada = "";
-
-        if(isset($_FILES['portada']) && $_FILES['portada']['error'] == 0){
-
-            $nombreArchivo = basename($_FILES['portada']['name']);
-
-            $rutaDestino = "img/" . $nombreArchivo;
-
-            if(move_uploaded_file($_FILES['portada']['tmp_name'], $rutaDestino)){
-                $portada = $rutaDestino;
-            }else{
-                die("No se pudo subir la imagen");
-            }
-        }
-
-
-
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["ImagenASubir"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image
+                if(isset($_POST["submit"])) {
+                  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                 if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                      $uploadOk = 1;
+                 } else {
+                      echo "File is not an image.";
+                 $uploadOk = 0;
+             }
+                }
 
             $nombre = $_POST['nombre'];
             $catid = $_POST['catid'];
             $descripcion = $_POST['descripcion'];
             $resenia = $_POST['resenia'];
 
-            $consulta = "INSERT INTO juegos (nombre, catid, descripcion, resenia, portada) VALUES ('".$nombre."', ".$catid.", '".$descripcion."', '".$resenia."', '".$portada"')";
+            $consulta = "INSERT INTO juegos (nombre, catid, descripcion, resenia, portada) VALUES ('".$nombre."', ".$catid.", '".$descripcion."', '".$resenia."', '".$portada."')";
 
            $resultado = $db->query($consulta);
           if($resultado >0){

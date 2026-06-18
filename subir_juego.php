@@ -99,9 +99,13 @@
     <label>Reseña</label>
     <textarea maxlength="500" class="form-control" name="resenia" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-  <div class="form-group text-white">
-    <input type="file" name="portada">
+  <div>
+   <label> Select image to upload: </label>
+   <input type="file" name="imagenASubir" id="fileToUpload">
+   <input type="submit" value="Upload Image" name="submit">
   </div>
+
+
   <button type="submit" class="btn btn-primary btn-lg center">Subir Juego</button>
   </div>
   
