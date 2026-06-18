@@ -101,7 +101,7 @@
   </div>
   <div>
    <label> Select image to upload: </label>
-   <input type="file" name="imagenASubir" id="fileToUpload">
+   <input type="file" name="fileToUpload" id="fileToUpload">
    <input type="submit" value="Upload Image" name="submit">
   </div>
 
