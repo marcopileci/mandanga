@@ -15,14 +15,31 @@
 
             $consulta = "INSERT INTO categorias (nombre) VALUES ('".$nombre."')";
 
-            $resultado = $db->query($consulta);
-            if($resultado > 0){
-                echo "Categoria agregado.";
-            } else {echo "Error";
+            //Comprobar si hay espacios vacios
+            //El HTML tiene la etiqueta requiered pero lo pongo aca tambine por las dudas
+            if (
+                $nombre == "" ||
+            ) {
+                echo "<script>
+                alert('Uno o mas campos estan vacios. Completelos antes de subir un juego.');
+                window.history.back();
+                </script>";
+                exit;
             }
-         ?>
 
-         <?php $db->close();
-         ?>
+            $resultado = $db->query($consulta);
+            if($resultado >0){
+            echo "<script>
+                alert('Juego agregado correctamente');
+                window.location.href = 'subir_categoria.php';
+                </script>";
+        } else {echo "<script>
+                alert('Ha ocurrido un error al subir el juego :(');
+                </script>";
+        }
+        ?>
+
+        <?php $db->close();
+        ?>
     </body>
 </html>
