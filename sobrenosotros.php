@@ -8,12 +8,13 @@
     $categorias= $db->query($consulta);
 
     ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Games Wiki</title>
+    <title>Sobre Nosotros - Discovery Games Wiki</title>
     <link rel="icon" type="image/png" href="img/icon_placeholder.png">
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -81,51 +82,17 @@
       </div>
     </header>
 
-<!-- FORM-->
-<form action="hacer_subir_juego.php" method="post" enctype="multipart/form-data">>
-  <div class="form-group text-white">
-    <label class="text-white" maxlength="160">Nombre del juego</label>
-    <textarea type="text" class="form-control" name="nombre" id="formGroupExampleInput" placeholder="NiGHTS into Dreams..." required></textarea>
-  <div class="form-group">
-    <label>Escoje la categoria</label>
-    <select class="form-control" name="catid" id="exampleFormControlSelect1">
-<?php
-    $consulta = "SELECT id, nombre FROM categorias";
-    $categorias= $db->query($consulta);
-
-     while($categoria = $categorias->fetch_assoc()){
-        echo "<option value='".$categoria['id']."'>".$categoria['nombre']."</option>";
-        }
-?>
-    </select>
-      </div>
-      <div class="form-group">
-    <label>Descripcion</label>
-    <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1" rows="3" maxlength="500" placeholder="Escápate al mundo de los sueños y embárcate en una aventura aérea como NiGHTS en 
-    este clásico de Sega Saturn..."></textarea>
+<!-- Botones destacados-->
+ <div class="py-2 text-center">
+  <h2 class="d-inline text-white">Sobre Nosotros y Discovery Games</h2>
+    <div class="py-5 text-white">
+      Under Construction...
+    </div>
   </div>
-    <div class="form-group">
-    <label>Reseña</label>
-    <textarea maxlength="500" class="form-control" name="resenia" id="exampleFormControlTextarea1" rows="3" placeholder="NiGHTS into Dreams es un juego realmente hermoso y extrañamente nostálgico. La estética y la música son especialmente agradables. Todo esto combinado crea una sensación similar a un sueño febril, y me encanta. Los productores y creadores de la serie Sonic the Hedgehog también participaron en la creación de este juego, y se nota fácilmente al jugarlo. El único punto negativo que tengo es que es demasiado corto..."></textarea>
-  </div>
-  <div>
-   <label> Seleciona un archivo para subir una portada: </label>
-   <input type="file" name="fileToUpload" id="fileToUpload" required>
-   <!-- <input type="submit" value="Upload Image" name="submit"> -->
-  </div>
-
-
-  <button type="submit" class="btn btn-primary btn-lg center">Subir Juego</button>
-  </div>
-  
-</form>
-
     <!-- 4. PIE DE PÁGINA (Footer) -->
     <footer class="py-3 my-4 border-top border-secondary text-center">
       <p class="text-secondary">&copy; 2026 Discovery Games Wiki</p>
     </footer>
-    <?php
-      $db->close();
-    ?>
+
 </body>
 </html>

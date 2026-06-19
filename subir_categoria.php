@@ -1,5 +1,5 @@
     <?php 
-    $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames");
+    $db = new mysqli("localhost", "root", "", "discoverygames");
     if ($db -> connect_error) {
         die("Error de conexion: " . $db->connect_error);    
     }
@@ -40,6 +40,7 @@
       }
     </style>
 </head>
+<!--Inicio del body -->
 <body>
   <!--Inicio Encabezado-->
   <!-- 1. BARRA DE NAVEGACIÓN -->
@@ -50,20 +51,27 @@
             Discovery Games Wiki
           </a>
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="main.html" class="nav-link px-2 text-white">Inicio</a></li>
+            <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categoria
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="categoria/peleas.html">Peleas</a></li>
-            <li><a class="dropdown-item" href="categoria/shooter.html">Shooter</a></li>
-            <li><a class="dropdown-item" href="categoria/mundoabierto.html">Mundo Abierto</a></li>
-            <li><a class="dropdown-item" href="categoria/carreras.html">Carrera</a></li>
-            <li><a class="dropdown-item" href="categoria/puzzle.html">Puzzle</a></li>
-          </ul>
-        </li>
-            <li><a href="sobrenosotros.html" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+
+    <!--Dropdown de categorias -->        
+    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false">
+        Categorías
+    </a>
+    <ul class="dropdown-menu">
+        <?php
+        while($categoria = $categorias->fetch_assoc()){
+            echo '<li>
+                    <a class="dropdown-item" href="categoria.php?id='.$categoria['id'].'">
+                        '.$categoria['nombre'].'
+                    </a>
+                  </li>';
+        }
+        ?>
+    </ul>
+</li>
+            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
             <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -77,7 +85,7 @@
 <form action="hacer_subir_categoria.php" method="post">
   <div class="form-group text-white">
     <label class="text-white">Nombre de la categoria</label>
-    <input type="text" class="form-control" name="nombre" id="formGroupExampleInput" placeholder="">
+    <textarea type="text" class="form-control" name="nombre" id="formGroupExampleInput" required placeholder="Accion, aventura, RPG, simulacion..."> </textarea>
     <button type="submit" class="btn btn-primary btn-lg center">Subir Categoria</button>
   
 </form>

@@ -2,7 +2,7 @@
 <html lang="es">
 <!-- Esto conecta a la base de datos -->
   <?php 
-  $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames");
+  $db = new mysqli("localhost", "root", "", "discoverygames");
   if ($db -> connect_error) {
    die("Error de conexion: " . $db->connect_error);    
    }
@@ -53,7 +53,7 @@
             Discovery Games Wiki
           </a>
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="main.html" class="nav-link px-2 text-white">Inicio</a></li>   
+            <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
 
     <!--Dropdown de categorias -->        
@@ -73,7 +73,7 @@
         ?>
     </ul>
 </li>
-            <li><a href="sobrenosotros.html" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
             <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -165,10 +165,10 @@ while($juego = $juegos->fetch_assoc()){
     <div class="col">
         <a href="fichadejuego.php?id='.$juego['id'].'" class="card-link text-decoration-none">
             <div class="card h-100 bg-dark border-secondary text-center shadow-sm">
+                
+                <img src="img/portada/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
 
-                <img src="img/'.$juego['id'].'.png" class="card-img-top" alt="'.$juego['nombre'].'">
-
-                <div class="card-body">
+                <div class="card-body"> 
                     <h5 class="card-title text-light">'.$juego['nombre'].'</h5>
                     <p class="card-text text-light">'.$juego['descripcion'].'</p>
                 </div>
