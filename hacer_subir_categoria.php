@@ -30,7 +30,7 @@
             $resultado = $db->query($consulta);
             if($resultado >0){
             echo "<script>
-                alert('Juego agregado correctamente');
+                alert('Categoria agregada correctamente');
                 window.location.href = 'subir_categoria.php';
                 </script>";
         } else {echo "<script>
