@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<!-- Esto conecta a la base de datos -->
   <?php 
-  //$db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
-  $db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
+  $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames");
   if ($db -> connect_error) {
    die("Error de conexion: " . $db->connect_error);    
    }
   $consulta = "SELECT id, nombre FROM categorias";
   $categorias= $db->query($consulta);
   ?>
-
-<!-- Inicio del Head-->
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,15 +36,8 @@
       .card-game:hover {
         transform: scale(1.05);
       }
-      .card-img-top {
-        width: 100%;    /*Ocupa todo el ancho de la carta */
-        height: 320px; /* altura fija */
-        /* object-fit: cover;*/   /* recorta sin deformar, */
-      }
     </style>
 </head>
-
-<!--Inicio del body -->
 <body>
   <!--Inicio Encabezado-->
   <!-- 1. BARRA DE NAVEGACIÓN -->
@@ -59,27 +48,20 @@
             Discovery Games Wiki
           </a>
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
+            <li><a href="main.html" class="nav-link px-2 text-white">Inicio</a></li>
             <li class="nav-item dropdown">
-
-    <!--Dropdown de categorias -->        
-    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-       data-bs-toggle="dropdown" aria-expanded="false">
-        Categorías
-    </a>
-    <ul class="dropdown-menu">
-        <?php
-        while($categoria = $categorias->fetch_assoc()){
-            echo '<li>
-                    <a class="dropdown-item" href="categoria.php?id='.$categoria['id'].'">
-                        '.$categoria['nombre'].'
-                    </a>
-                  </li>';
-        }
-        ?>
-    </ul>
-</li>
-            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categoria
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="categoria/peleas.html">Peleas</a></li>
+            <li><a class="dropdown-item" href="categoria/shooter.html">Shooter</a></li>
+            <li><a class="dropdown-item" href="categoria/mundoabierto.html">Mundo Abierto</a></li>
+            <li><a class="dropdown-item" href="categoria/carreras.html">Carrera</a></li>
+            <li><a class="dropdown-item" href="categoria/puzzle.html">Puzzle</a></li>
+          </ul>
+        </li>
+            <li><a href="sobrenosotros.html" class="nav-link px-2 text-white">Sobre nosotros</a></li>
             <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -136,91 +118,136 @@
 
 <!--Fin Botones destacados-->
 
-  <center>
+
 <!-- Grilla con los juegos, 3 x 3-->
-<?php
-$porPagina = 8;
 
-$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-
-if($pagina < 1){
-    $pagina = 1;
-}
-
-$inicio = ($pagina - 1) * $porPagina;
-$resultadoTotal = $db->query("SELECT COUNT(*) AS total FROM juegos");
-$totalJuegos = $resultadoTotal->fetch_assoc()['total'];
-
-$totalPaginas = ceil($totalJuegos / $porPagina);
-
-$consulta = "
-SELECT j.*, c.nombre AS categoria
-FROM juegos j
-LEFT JOIN categorias c ON j.catid = c.id
-LIMIT $inicio, $porPagina
-";
-
-$juegos = $db->query($consulta);
-
-echo '<div class="container">';
-echo '<div class="row row-cols-1 row-cols-md-4 g-4">';
-
-while($juego = $juegos->fetch_assoc()){
-
-    echo '
-    <div class="col">
-        <a href="fichadejuego.php?id='.$juego['id'].'" class="card-link text-decoration-none">
-            <div class="card h-100 bg-dark border-secondary text-center shadow-sm">
-                
-                <img src="img/portada/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
-
-                <div class="card-body"> 
-                    <h5 class="card-title text-light">'.$juego['nombre'].'</h5>
-                    <p class="card-text text-light">'.$juego['descripcion'].'</p>
-                </div>
-
-                <div class="card-footer">
-                    <small class="text-light">'.$juego['categoria'].'</small>
-                </div>
-            </div>
-        </a>
-    </div>';
-}
-
-echo '</div>';
-echo '</div>';
-?>
 <!-- Remplaza los "..." con algunas imagenes de ejemplo!!!!-->
-</center>
-
+    <center>
+<div class="container">
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="img/gta3.png" class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">Grand Theft Auto III</h5>
+        <p class="card-text text-light ">Juego culeao</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">Mundo Abierto</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+     <a href="fichadejuego.html" class="card-link">
+    <div class="card h-100 bg-dark border-secondary text-center shadow-sm card-game">
+      <img src="..." class="card-img-top" alt="...">  </a>
+      <div class="card-body">
+        <h5 class="card-title text-light">...</h5>
+        <p class="card-text text-light ">...</p>
+      </div>
+      <div class="card-footer text-light ">
+        <small class="text-body-secondary-light">...</small>
+      </div>
+    </div>
+  </div>
+</center><br>
 
 <!-- Fin de la grilla-->
-<center>
+
 <!-- Navegador de paginas-->
-<?php
-echo '<div class="d-flex justify-content-center mt-4">';
-echo '<div class="btn-group" role="group">';
-
-for($i = 1; $i <= $totalPaginas; $i++){
-
-    $clase = ($i == $pagina)
-        ? 'btn btn-secondary'
-        : 'btn btn-outline-secondary';
-
-    echo '<a href="?pagina='.$i.'" class="'.$clase.'">'.$i.'</a>';
-}
-
-echo '</div>';
-echo '</div>';
-?>
+<center>
+<div class="btn" role="toolbar" aria-label="Toolbar with button groups">
+<div style="grid-template-columns: 1fr 1fr;" class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary">1</button>
+    <button type="button" class="btn btn-outline-secondary">2</button>
+    <button type="button" class="btn btn-outline-secondary">3</button>
+  </div>
+</div>
 </center>
 
     <!-- 4. PIE DE PÁGINA (Footer) -->
     <footer class="py-3 my-4 border-top border-secondary text-center">
       <p class="text-secondary">&copy; 2026 Discovery Games Wiki</p>
     </footer>
-    <?php
-      $db->close();
-    ?>
+
 </body>
 </html>

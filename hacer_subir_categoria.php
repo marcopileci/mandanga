@@ -10,18 +10,18 @@
         ?>
 <html>
     <body>
-          <?php
-            $nombre = $_POST['nombre'];
+        <?php
+            $nombre = trim($_POST['nombre']);
 
             $consulta = "INSERT INTO categorias (nombre) VALUES ('".$nombre."')";
 
             //Comprobar si hay espacios vacios
             //El HTML tiene la etiqueta requiered pero lo pongo aca tambine por las dudas
             if (
-                $nombre == "" ||
+                $nombre == "" 
             ) {
                 echo "<script>
-                alert('Uno o mas campos estan vacios. Completelos antes de subir un juego.');
+                alert('Uno o mas campos estan vacios. Completelos antes de subir una categoria.');
                 window.history.back();
                 </script>";
                 exit;
@@ -34,7 +34,7 @@
                 window.location.href = 'subir_categoria.php';
                 </script>";
         } else {echo "<script>
-                alert('Ha ocurrido un error al subir el juego :(');
+                alert('Ha ocurrido un error al subir la categoria :(');
                 </script>";
         }
         ?>

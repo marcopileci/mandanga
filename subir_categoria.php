@@ -1,5 +1,6 @@
     <?php 
-    $db = new mysqli("localhost", "root", "", "discoverygames");
+    //$db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
+    $db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
     if ($db -> connect_error) {
         die("Error de conexion: " . $db->connect_error);    
     }
@@ -85,7 +86,7 @@
 <form action="hacer_subir_categoria.php" method="post">
   <div class="form-group text-white">
     <label class="text-white">Nombre de la categoria</label>
-    <textarea type="text" class="form-control" name="nombre" id="formGroupExampleInput" required placeholder="Accion, aventura, RPG, simulacion..."> </textarea>
+    <textarea type="text" class="form-control" name="nombre" id="formGroupExampleInput" required placeholder="Accion, aventura, RPG, simulacion..."></textarea>
     <button type="submit" class="btn btn-primary btn-lg center">Subir Categoria</button>
   
 </form>

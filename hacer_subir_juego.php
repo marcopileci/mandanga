@@ -45,13 +45,19 @@
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
         if ($check === false) {
-            echo "El archivo no es una imagen válida.<br>";
+            echo "<script>
+            alert('El archivo no es una imagen válida.');
+            window.history.back();
+            </script>";
             $uploadOk = 0;
         }
 
         // Verificar tamaño (500 KB)
         if ($_FILES["fileToUpload"]["size"] > 500000) {
-            echo "La imagen supera el tamaño permitido.<br>";
+            echo "<script>
+            alert('La imagen supera el tamaño permitido. (500MB)');
+            window.history.back();
+            </script>";
             $uploadOk = 0;
         }
 
@@ -62,13 +68,19 @@
             $imageFileType != "png" &&
             $imageFileType != "gif"
         ) {
-            echo "Solo se permiten archivos JPG, JPEG, PNG y GIF.<br>";
+            echo "<script>
+                alert('Solo se permiten archivos JPG, JPEG, PNG y GIF.');
+                window.history.back();
+                </script>";
             $uploadOk = 0;
         }
 
         // Si alguna validación falló, detener ejecución
         if ($uploadOk == 0) {
-            echo "La imagen no pudo ser subida.";
+            echo "<script>
+                alert('La imagen no pudo ser subida.');
+                window.history.back();
+            </script>";
             exit;
         }
 
@@ -102,11 +114,13 @@
         } else {
             echo "<script>
                 alert('Ha ocurrido un error al guardar el juego');
+                window.history.back();
             </script>";
         }
 
         $db->close();
-
+    
 ?>
+
 </body>
 </html>
