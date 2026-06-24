@@ -5,8 +5,8 @@
   if ($db -> connect_error) {
    die("Error de conexion: " . $db->connect_error);    
    }
-  // $consulta = "SELECT id, nombre FROM juegos";
-  // +$juegos= $db->query($consulta);
+  $consulta = "SELECT id, nombre FROM categorias";
+  $categorias= $db->query($consulta);
   ?>
 
 
@@ -55,11 +55,15 @@
             Categoria
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="categoia/peleas.html">Peleas</a></li>
-            <li><a class="dropdown-item" href="categoria/shooter.html">Shooter</a></li>
-            <li><a class="dropdown-item" href="categoria/mundoabierto.html">Mundo Abierto</a></li>
-            <li><a class="dropdown-item" href="categoria/carreras.html">Carrera</a></li>
-            <li><a class="dropdown-item" href="categoria/puzzle.html">Puzzle</a></li>
+            <?php
+              while($categoria = $categorias->fetch_assoc()){
+                echo '<li>
+                        <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
+                            '.$categoria['nombre'].'
+                        </a>
+                      </li>';
+                }
+            ?>
           </ul>
         </li>
             <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
@@ -107,7 +111,7 @@
           <!-- Lado del Contenido -->
           <div class="col-lg-7">
             <div class="mb-2">
-              <a class="badge bg-danger text-uppercase fw-bold" href="categoria/shooter.html">'.$juego['categoria'].'</a>
+              <a class="badge bg-danger text-uppercase fw-bold" href="main.php?categoria='.$juego['catid'].'">'.$juego['categoria'].'</a>
             </div>
             <h1 class="display-4 fw-bold text-body-emphasis lh-1 mb-3">'.$juego['nombre'].'</h1>
             <h3 class="h5 text-info mt-4">Sinopsis:</h3>
@@ -142,7 +146,9 @@
               SELECT j.*, c.nombre AS categoria
               FROM juegos j
               LEFT JOIN categorias c ON j.catid = c.id
-              WHERE j.catid = ? AND j.id != ?
+              WHERE 
+              j.catid = ? AND j.id != ?
+              ORDER BY j.id DESC
               LIMIT 4
           ");
           $consulta_rec->bind_param("ii", $catid, $id);

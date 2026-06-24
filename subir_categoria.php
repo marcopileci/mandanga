@@ -61,15 +61,15 @@
         Categorías
     </a>
     <ul class="dropdown-menu">
-        <?php
+      <?php
         while($categoria = $categorias->fetch_assoc()){
-            echo '<li>
-                    <a class="dropdown-item" href="categoria.php?id='.$categoria['id'].'">
-                        '.$categoria['nombre'].'
-                    </a>
-                  </li>';
-        }
-        ?>
+          echo '<li>
+                  <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
+                      '.$categoria['nombre'].'
+                  </a>
+                </li>';
+          }
+      ?>
     </ul>
 </li>
             <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>

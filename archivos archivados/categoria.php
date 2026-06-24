@@ -61,23 +61,24 @@
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
-            <!--Dropdown de categorias -->        
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-                Categorías
-            </a>
-            <ul class="dropdown-menu">
-              <?php
-                while($categoria = $categorias->fetch_assoc()){
-                  echo '<li>
-                          <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
-                              '.$categoria['nombre'].'
-                          </a>
-                        </li>';
-                  }
-              ?>
-            </ul>
-            </li>
+
+    <!--Dropdown de categorias -->        
+    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false">
+        Categorías
+    </a>
+    <ul class="dropdown-menu">
+        <?php
+        while($categoria = $categorias->fetch_assoc()){
+            echo '<li>
+                    <a class="dropdown-item" href="categoria.php?categoria='.$categoria['id'].'">
+                        '.$categoria['nombre'].'
+                    </a>
+                  </li>';
+        }
+        ?>
+    </ul>
+</li>
             <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
             <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
@@ -93,65 +94,44 @@
 
     <div class="p-3">
     <center>
-    <h3 class="center text-white"> ¡Ayudanos a subir mas juegos y categorias!</h3>
+       <h3 class="center text-white"> ¡Ayudanos a subir mas juegos y categorias!</h3>
     <a href=subir_juego.php type="button" class="btn btn-success btn-lg">Subir Juego</a>
     <a href=subir_categoria.php type="button" class="btn btn-success btn-lg">Subir Categoria</a>
     </div>
-    
-    <center>
-    <?php
-    $letras = array_merge(range('A', 'Z'), ['0-9', 'Todos']);
-    foreach($letras as $letra):
-    if($letra === 'Todos'){
-        $href = "main.php";
-    } elseif($letra === '0-9'){
-        $href = "main.php?letra=0-9";
-    } else {
-        $href = "main.php?letra=$letra";
-    }
-    $activa = (isset($_GET['letra']) && $_GET['letra'] === $letra) ? 'btn-secondary' : 'btn-outline-secondary';
-?>
-    <a href="<?= $href ?>" class="btn <?= $activa ?>"><?= $letra ?></a>
-<?php endforeach; ?>
-</center> <br>
 
 <!--Fin Botones destacados-->
 
   <center>
 <!-- Grilla con los juegos, 3 x 3-->
 <?php
+
+if (!isset($_GET['id'])){
+    header('Location: main.php');
+    exit;
+}
 $porPagina = 8;
+
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-if($pagina < 1) $pagina = 1;
+
+if($pagina < 1){
+  $pagina = 1;
+}
 $inicio = ($pagina - 1) * $porPagina;
 
-// Leer categoría si viene en la URL
+//Leer el filtro de la categoria
 $categoriaId = isset($_GET['categoria']) ? (int)$_GET['categoria'] : null;
-$letra = isset($_GET['letra']) ? $_GET['letra'] : null;
+$where = $categoriaId ? "WHERE j.catid = $categoriaId" : "";
 
-//filtrar por letra
-$condiciones = [];
-if($categoriaId) $condiciones[] = "j.catid = $categoriaId";
-if($letra === '0-9'){
-    $condiciones[] = "j.nombre REGEXP '^[0-9]'";
-} elseif($letra){
-    $letraSegura = $db->real_escape_string($letra);
-    $condiciones[] = "j.nombre LIKE '$letraSegura%'";
-}
-$where = count($condiciones) ? "WHERE " . implode(" AND ", $condiciones) : "";
-
-// Total respetando el filtro
 $resultadoTotal = $db->query("SELECT COUNT(*) AS total FROM juegos j $where");
 $totalJuegos = $resultadoTotal->fetch_assoc()['total'];
 $totalPaginas = ceil($totalJuegos / $porPagina);
 
 $consulta = "
-    SELECT j.*, c.nombre AS categoria
-    FROM juegos j
-    LEFT JOIN categorias c ON j.catid = c.id
-    $where
-    ORDER BY j.id DESC
-    LIMIT $inicio, $porPagina
+SELECT j.*, c.nombre AS categoria
+FROM juegos j
+LEFT JOIN categorias c ON j.catid = c.id
+$where
+LIMIT $inicio, $porPagina
 ";
 $juegos = $db->query($consulta);
 
@@ -194,14 +174,13 @@ echo '</div>';
 echo '<div class="d-flex justify-content-center mt-4">';
 echo '<div class="btn-group" role="group">';
 
-$params = [];
-if($categoriaId) $params[] = "categoria=$categoriaId";
-if($letra) $params[] = "letra=$letra";
-$baseUrl = count($params) ? "?" . implode("&", $params) . "&pagina=" : "?pagina=";
-
 for($i = 1; $i <= $totalPaginas; $i++){
-    $clase = ($i == $pagina) ? 'btn btn-secondary' : 'btn btn-outline-secondary';
-    echo '<a href="'.$baseUrl.$i.'" class="'.$clase.'">'.$i.'</a>';
+
+    $clase = ($i == $pagina)
+        ? 'btn btn-secondary'
+        : 'btn btn-outline-secondary';
+
+    echo '<a href="?pagina='.$i.'" class="'.$clase.'">'.$i.'</a>';
 }
 
 echo '</div>';
