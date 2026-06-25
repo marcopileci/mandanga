@@ -101,7 +101,7 @@
           <!-- Lado de la Imagen -->
           <div class="col-10 col-sm-8 col-lg-5 mx-auto">
             <img
-              src="img/portada/'.$juego['portada'].'"
+              src="img/portada/'.$juego['img'].'"
               class="d-block mx-lg-auto img-fluid rounded-3 shadow-lg border border-secondary"
               alt="'.$juego['nombre'].'"
               style="width: 500px; height: 500px; object-fit: full;"
@@ -162,7 +162,7 @@
                   <a class="card h-100 bg-dark border-secondary text-center shadow-sm card-game" 
                     href="fichadejuego.php?id=<?php echo $row['id']; ?>">
                       <div class="p-3">
-                          <img src="img/portada/<?php echo $row['portada']; ?>" 
+                          <img src="img/portada/<?php echo $row['img']; ?>" 
                               class="card-img-top rounded" 
                               alt="<?php echo $row['nombre']; ?>" 
                               style="height: 150px; object-fit: cover;">

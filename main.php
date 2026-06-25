@@ -2,8 +2,8 @@
 <html lang="es">
 <!-- Esto conecta a la base de datos -->
   <?php 
-  //$db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
-  $db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
+  $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
+  //$db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
   if ($db -> connect_error) {
    die("Error de conexion: " . $db->connect_error);    
    }
@@ -163,7 +163,7 @@ while($juego = $juegos->fetch_assoc()){
         <a href="fichadejuego.php?id='.$juego['id'].'" class="card-link text-decoration-none">
             <div class="card h-100 bg-dark border-secondary text-center shadow-sm">
                 
-                <img src="img/portada/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
+                <img src="img/portada/'.$juego['img'].'" class="card-img-top" alt="'.$juego['nombre'].'">
 
                 <div class="card-body"> 
                     <h5 class="card-title text-light">'.$juego['nombre'].'</h5>

@@ -1,6 +1,6 @@
     <?php 
-    //$db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
-    $db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
+    $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
+    //$db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
     if ($db -> connect_error) {
         die("Error de conexion: " . $db->connect_error);    
     }
