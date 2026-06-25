@@ -1,5 +1,5 @@
     <?php 
-    $db = new mysqli("localhost", "root", "", "discoverygames");
+    $db = new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames");
     if ($db -> connect_error) {
         die("Error de conexion: " . $db->connect_error);    
     }
