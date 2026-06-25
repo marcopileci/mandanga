@@ -61,25 +61,28 @@
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
-            <!--Dropdown de categorias -->        
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-                Categorías
-            </a>
-            <ul class="dropdown-menu">
-              <?php
-                while($categoria = $categorias->fetch_assoc()){
-                  echo '<li>
-                          <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
-                              '.$categoria['nombre'].'
-                          </a>
-                        </li>';
-                  }
-              ?>
-            </ul>
-            </li>
-            <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search"> -->
+
+    <!--Dropdown de categorias -->        
+    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false">
+        Categorías
+    </a>
+    <ul class="dropdown-menu">
+        <?php
+        while($categoria = $categorias->fetch_assoc()){
+            echo '<li>
+                    <a class="dropdown-item" href="categoria.php?id='.$categoria['id'].'">
+                        '.$categoria['nombre'].'
+                    </a>
+                  </li>';
+        }
+        ?>
+    </ul>
+</li>
+          <!--  <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <form class="d-flex" role="search">
+         <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Buscar</button> -->
       </form>
           </ul>
         </div>
@@ -112,7 +115,6 @@
     <a href="<?= $href ?>" class="btn <?= $activa ?>"><?= $letra ?></a>
 <?php endforeach; ?>
 </center> <br>
-
 
 <!--Fin Botones destacados-->
 
@@ -157,7 +159,7 @@ while($juego = $juegos->fetch_assoc()){
         <a href="fichadejuego.php?id='.$juego['id'].'" class="card-link text-decoration-none">
             <div class="card h-100 bg-dark border-secondary text-center shadow-sm">
                 
-                <img src="img/header/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
+                <img src="img/portada/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
 
                 <div class="card-body"> 
                     <h5 class="card-title text-light">'.$juego['nombre'].'</h5>

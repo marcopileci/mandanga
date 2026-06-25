@@ -41,7 +41,7 @@
   </head>
   <body>
 
-<!-- 1. BARRA DE NAVEGACIÓN -->
+<!-- 1. BARRA DE NAVEGACIÓN (Tu menú mejorado) -->
     <header class="p-3 text-bg-dark border-bottom border-secondary">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -49,33 +49,32 @@
             Discovery Games Wiki
           </a>
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
+            <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>
             <li class="nav-item dropdown">
-            <!--Dropdown de categorias -->        
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-                Categorías
-            </a>
-            <ul class="dropdown-menu">
-              <?php
-                while($categoria = $categorias->fetch_assoc()){
-                  echo '<li>
-                          <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
-                              '.$categoria['nombre'].'
-                          </a>
-                        </li>';
-                  }
-              ?>
-            </ul>
-            </li>
-           <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search"> -->
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categoria
+          </a>
+          <ul class="dropdown-menu">
+            <?php
+              while($categoria = $categorias->fetch_assoc()){
+                echo '<li>
+                        <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
+                            '.$categoria['nombre'].'
+                        </a>
+                      </li>';
+                }
+            ?>
+          </ul>
+        </li>
+          <!--  <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <form class="d-flex" role="search">
+         <input class="form-control me-2 bg-white" type="search" placeholder="Explora juegos...." aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Buscar</button> -->
       </form>
           </ul>
         </div>
       </div>
     </header>
-
 
     <main>
       <?php
@@ -101,7 +100,7 @@
           <!-- Lado de la Imagen -->
           <div class="col-10 col-sm-8 col-lg-5 mx-auto">
             <img
-              src="img/portada/'.$juego['img'].'"
+              src="img/portada/'.$juego['portada'].'"
               class="d-block mx-lg-auto img-fluid rounded-3 shadow-lg border border-secondary"
               alt="'.$juego['nombre'].'"
               style="width: 500px; height: 500px; object-fit: full;"
@@ -132,7 +131,7 @@
       <!-- Divisor estético oficial de Bootstrap -->
       <div class="b-example-divider"></div>
 
-      <!-- 3. SECCIÓN DE RECOMENDADOS -->
+      <!-- 3. SECCIÓN DE RECOMENDADOS (Tus 4 juegos en rejilla de tarjetas) -->
       <div class="container px-4 py-5">
         <h2 class="pb-2 border-bottom border-secondary text-white mb-4">Juegos Recomendados</h2>
         
@@ -162,7 +161,7 @@
                   <a class="card h-100 bg-dark border-secondary text-center shadow-sm card-game" 
                     href="fichadejuego.php?id=<?php echo $row['id']; ?>">
                       <div class="p-3">
-                          <img src="img/portada/<?php echo $row['img']; ?>" 
+                          <img src="img/portada/<?php echo $row['portada']; ?>" 
                               class="card-img-top rounded" 
                               alt="<?php echo $row['nombre']; ?>" 
                               style="height: 150px; object-fit: cover;">

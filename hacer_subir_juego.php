@@ -52,7 +52,7 @@
             $uploadOk = 0;
         }
 
-        // Verificar tamaño (500 MB)
+        // Verificar tamaño (500 KB)
         if ($_FILES["fileToUpload"]["size"] > 500000) {
             echo "<script>
             alert('La imagen supera el tamaño permitido. (500MB)');

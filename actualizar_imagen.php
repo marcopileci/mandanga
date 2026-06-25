@@ -6,12 +6,12 @@ if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-if (isset($_POST['img']) && isset($_POST['id'])) {
+if (isset($_POST['portada']) && isset($_POST['id'])) {
 
-    $nuevaImg = $_POST['img'];
+    $nuevaImg = $_POST['portada'];
     $idJuego = (int)$_POST['id'];
 
-    $sql = "UPDATE juegos SET img = ? WHERE id = ?";
+    $sql = "UPDATE juegos SET portada = ? WHERE id = ?";
 
     $stmt = mysqli_prepare($conexion, $sql);
     mysqli_stmt_bind_param($stmt, "si", $nuevaImg, $idJuego);

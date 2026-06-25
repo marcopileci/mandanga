@@ -50,6 +50,7 @@
 
 <!--Inicio del body -->
 <body>
+  <!--Inicio Encabezado-->
   <!-- 1. BARRA DE NAVEGACIÓN -->
     <header class="p-3 text-bg-dark border-bottom border-secondary">
       <div class="container">
@@ -78,13 +79,14 @@
             </ul>
             </li>
             <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search"> -->
+            <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Buscar</button> -->
       </form>
           </ul>
         </div>
       </div>
     </header>
-
 
 <!-- Botones destacados-->
 
@@ -163,7 +165,7 @@ while($juego = $juegos->fetch_assoc()){
         <a href="fichadejuego.php?id='.$juego['id'].'" class="card-link text-decoration-none">
             <div class="card h-100 bg-dark border-secondary text-center shadow-sm">
                 
-                <img src="img/portada/'.$juego['img'].'" class="card-img-top" alt="'.$juego['nombre'].'">
+                <img src="img/portada/'.$juego['portada'].'" class="card-img-top" alt="'.$juego['nombre'].'">
 
                 <div class="card-body"> 
                     <h5 class="card-title text-light">'.$juego['nombre'].'</h5>
