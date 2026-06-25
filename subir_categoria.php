@@ -43,7 +43,6 @@
 </head>
 <!--Inicio del body -->
 <body>
-  <!--Inicio Encabezado-->
   <!-- 1. BARRA DE NAVEGACIÓN -->
     <header class="p-3 text-bg-dark border-bottom border-secondary">
       <div class="container">
@@ -54,28 +53,25 @@
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
-
-    <!--Dropdown de categorias -->        
-    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-       data-bs-toggle="dropdown" aria-expanded="false">
-        Categorías
-    </a>
-    <ul class="dropdown-menu">
-      <?php
-        while($categoria = $categorias->fetch_assoc()){
-          echo '<li>
-                  <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
-                      '.$categoria['nombre'].'
-                  </a>
-                </li>';
-          }
-      ?>
-    </ul>
-</li>
-            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <!--Dropdown de categorias -->        
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+                Categorías
+            </a>
+            <ul class="dropdown-menu">
+              <?php
+                while($categoria = $categorias->fetch_assoc()){
+                  echo '<li>
+                          <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
+                              '.$categoria['nombre'].'
+                          </a>
+                        </li>';
+                  }
+              ?>
+            </ul>
+            </li>
+            <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <form class="d-flex" role="search"> -->
       </form>
           </ul>
         </div>

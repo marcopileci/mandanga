@@ -2,8 +2,8 @@
 <html lang="es">
 <!-- Esto conecta a la base de datos -->
   <?php 
-  //$db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
-  $db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
+  $db= new mysqli("192.168.1.48", "marco", "cfl408", "discoverygames"); //RED PRINCIPAL
+  //$db = new mysqli("localhost", "root", "", "discoverygames"); //RED DE PRUEBA
   if ($db -> connect_error) {
    die("Error de conexion: " . $db->connect_error);    
    }
@@ -61,28 +61,25 @@
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="main.php" class="nav-link px-2 text-white">Inicio</a></li>   
             <li class="nav-item dropdown">
-
-    <!--Dropdown de categorias -->        
-    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-       data-bs-toggle="dropdown" aria-expanded="false">
-        Categorías
-    </a>
-    <ul class="dropdown-menu">
-        <?php
-        while($categoria = $categorias->fetch_assoc()){
-            echo '<li>
-                    <a class="dropdown-item" href="categoria.php?id='.$categoria['id'].'">
-                        '.$categoria['nombre'].'
-                    </a>
-                  </li>';
-        }
-        ?>
-    </ul>
-</li>
-            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <!--Dropdown de categorias -->        
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+                Categorías
+            </a>
+            <ul class="dropdown-menu">
+              <?php
+                while($categoria = $categorias->fetch_assoc()){
+                  echo '<li>
+                          <a class="dropdown-item" href="main.php?categoria='.$categoria['id'].'">
+                              '.$categoria['nombre'].'
+                          </a>
+                        </li>';
+                  }
+              ?>
+            </ul>
+            </li>
+            <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <form class="d-flex" role="search"> -->
       </form>
           </ul>
         </div>
@@ -100,39 +97,22 @@
     </div>
     
     <center>
-    <div class="p-1 abecedario">
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> A </button>  
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> B </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> C </button>   
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> D </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> E </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> F </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> G </button>  
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> H </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> I </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> J </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> K </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> L </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> M </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> N </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> O </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> P </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> Q </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> R </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> S </button>
-        </div>
-        <div class="p-1 abecedario">
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> T </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> U </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> V </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> W </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> X </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> Y </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> Z </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> 0-9 </button>
-        <button type="button" class="btn btn-outline-secondary" href="PLACEHOLDER"> Todos </button>
-        </div>
-    </div></center> <br>
+    <?php
+    $letras = array_merge(range('A', 'Z'), ['0-9', 'Todos']);
+    foreach($letras as $letra):
+    if($letra === 'Todos'){
+        $href = "main.php";
+    } elseif($letra === '0-9'){
+        $href = "main.php?letra=0-9";
+    } else {
+        $href = "main.php?letra=$letra";
+    }
+    $activa = (isset($_GET['letra']) && $_GET['letra'] === $letra) ? 'btn-secondary' : 'btn-outline-secondary';
+?>
+    <a href="<?= $href ?>" class="btn <?= $activa ?>"><?= $letra ?></a>
+<?php endforeach; ?>
+</center> <br>
+
 
 <!--Fin Botones destacados-->
 

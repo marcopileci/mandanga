@@ -50,7 +50,6 @@
 
 <!--Inicio del body -->
 <body>
-  <!--Inicio Encabezado-->
   <!-- 1. BARRA DE NAVEGACIÓN -->
     <header class="p-3 text-bg-dark border-bottom border-secondary">
       <div class="container">
@@ -78,15 +77,14 @@
               ?>
             </ul>
             </li>
-            <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
-            <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Explora juegos...." aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <!-- <li><a href="sobrenosotros.php" class="nav-link px-2 text-white">Sobre nosotros</a></li>
+            <form class="d-flex" role="search"> -->
       </form>
           </ul>
         </div>
       </div>
     </header>
+
 
 <!-- Botones destacados-->
 
